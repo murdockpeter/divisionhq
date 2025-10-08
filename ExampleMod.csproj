@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <!-- Target .NET Framework version used by Unity -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputPath>output\</OutputPath>
+    <AssemblyName>DivisionEnablers</AssemblyName>
+  </PropertyGroup>
+
+<!-- Disables the debug .pdb file when exporting your mod -->
+  <PropertyGroup>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+
+      <!-- Harmony library (patching API) -->
+    <Reference Include="0Harmony">
+      <HintPath>Libraries\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+      <!-- Game's main assembly -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>Libraries\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+      <!-- Library used to handle JSON serialization -->
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Libraries\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+      <!-- Base Unity engine assembly -->
+    <Reference Include="UnityEngine">
+      <HintPath>Libraries\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+      <!-- Unity core functionalities -->
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>Libraries\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+      <!-- Unity UI system, to interact with anything UI-related -->
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Libraries\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+     <!-- Extra Unity UI system, to interact with Canvases etc -->
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>Libraries\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Unity Image Conversion module, used to perform operations on textures -->
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>Libraries\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Unity Audio module, used to handle audio clips or audio sources (Musics, SFXs...) -->
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>Libraries\UnityEngine.AudioModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+      <!-- TextMeshPro UI text rendering, to interact with the text elements -->
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Libraries\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Extra tools for text objects -->
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>Libraries\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Used for multiplayer commands -->
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>Libraries\PhotonUnityNetworking.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+        <!-- Used for blurred background UI images (to match the game's 'modern' UI style) -->
+    <Reference Include="TranslucentImage">
+      <HintPath>Libraries\TranslucentImage.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+  </ItemGroup>
+
+</Project>
