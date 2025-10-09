@@ -47,6 +47,7 @@ public class DivisionEnablersModEntry : GameModification
         GameObject keybindHandler = new GameObject("DivisionEnablersKeybindHandler");
         keybindHandler.AddComponent<DivisionEnablersKeybindHandler>();
         keybindHandler.AddComponent<DivisionEnablersMod.ArtilleryClickHandler>();
+        keybindHandler.AddComponent<DivisionEnablersMod.AirReconClickHandler>();
         GameObject.DontDestroyOnLoad(keybindHandler);
 
         Debug.Log("[DivisionEnablers] Mod initialized successfully! Press 'H' to toggle Division HQ");

@@ -123,6 +123,7 @@ namespace DivisionEnablersMod
         {
             public string playerName;
             public List<Enabler> enablers = new List<Enabler>();
+            public List<AirReconZone> activeReconZones = new List<AirReconZone>();
 
             public PlayerEnablerData(string playerName)
             {
@@ -182,6 +183,17 @@ namespace DivisionEnablersMod
             {
                 foreach (var enabler in enablers)
                     enabler.OnTurnEnd();
+
+                // Update recon zones and remove expired
+                if (activeReconZones != null && activeReconZones.Count > 0)
+                {
+                    for (int i = activeReconZones.Count - 1; i >= 0; i--)
+                    {
+                        activeReconZones[i].remainingTurns--;
+                        if (activeReconZones[i].remainingTurns <= 0)
+                            activeReconZones.RemoveAt(i);
+                    }
+                }
             }
         }
 
@@ -276,6 +288,21 @@ namespace DivisionEnablersMod
                 {
                     modData.OnTurnEnd();
                     Debug.Log("[DivisionEnablers] Processed turn end for all players");
+
+                    // Reapply recon reveals for the new current player
+                    try
+                    {
+                        Player current = TurnManager.currPlayer;
+                        if (current != null)
+                        {
+                            AirReconSystem.ReapplyZonesForPlayer(current);
+                            Debug.Log($"[DivisionEnablers] Reapplied recon zones for {current.Country}");
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError($"[DivisionEnablers] Error reapplying recon zones: {ex.Message}");
+                    }
                 }
             }
         }
@@ -344,8 +371,8 @@ namespace DivisionEnablersMod
                     break;
 
                 case EnablerType.AirReconnaissance:
-                    // Reveal fog of war
-                    Debug.Log($"[DivisionEnablers] Air recon effect applied for {player.Country}");
+                    // Targeting for Air Recon is handled in UI with AirReconSystem
+                    Debug.Log($"[DivisionEnablers] Air recon requested for {player.Country}");
                     break;
 
                 case EnablerType.SupplyDrop:
@@ -362,6 +389,35 @@ namespace DivisionEnablersMod
                     Debug.LogWarning($"[DivisionEnablers] Unimplemented enabler type: {type}");
                     break;
             }
+        }
+
+        [Serializable]
+        public class AirReconZone
+        {
+            public int x;
+            public int y;
+            public int remainingTurns;
+            public int radius;
+
+            public AirReconZone(int x, int y, int remainingTurns, int radius)
+            {
+                this.x = x;
+                this.y = y;
+                this.remainingTurns = remainingTurns;
+                this.radius = radius;
+            }
+        }
+
+        public static void AddAirReconZoneForPlayer(Player player, int x, int y, int turns, int radius)
+        {
+            var pdata = GetPlayerData(player);
+            if (pdata == null) return;
+
+            if (pdata.activeReconZones == null)
+                pdata.activeReconZones = new List<AirReconZone>();
+
+            pdata.activeReconZones.Add(new AirReconZone(x, y, turns, radius));
+            Debug.Log($"[DivisionEnablers] Added AirRecon zone for {player.Country} at ({x},{y}) R{radius} for {turns} turns");
         }
 
         static void AddReinforcements(Player player)

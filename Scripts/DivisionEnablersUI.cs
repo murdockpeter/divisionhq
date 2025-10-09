@@ -369,6 +369,13 @@ public class DivisionEnablersUI
             return;
         }
 
+        // Special handling for Air Recon - activate targeting flow
+        if (type == DivisionEnablers.EnablerType.AirReconnaissance)
+        {
+            ShowAirReconTargeting(player);
+            return;
+        }
+
         bool success = DivisionEnablers.RequestEnabler(player, type);
 
         if (success)
@@ -383,6 +390,22 @@ public class DivisionEnablersUI
     {
         ClosePanel();
         CreateArtilleryConfigPanel(player);
+    }
+
+    static void ShowAirReconTargeting(Player player)
+    {
+        // Validate availability before entering targeting
+        var pdata = DivisionEnablers.GetPlayerData(player);
+        var enabler = pdata?.GetEnabler(DivisionEnablers.EnablerType.AirReconnaissance);
+        if (enabler == null || !enabler.CanRequest(player))
+        {
+            UIManager.ShowMessage("Cannot request Air Recon now");
+            return;
+        }
+
+        // Close panel and start targeting with the enabler's duration
+        ClosePanel();
+        DivisionEnablersMod.AirReconSystem.ActivateTargeting(player, enabler.activeDuration, radius: 2);
     }
 
     static Canvas GetCanvas()
