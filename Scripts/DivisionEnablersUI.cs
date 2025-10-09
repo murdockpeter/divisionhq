@@ -376,6 +376,12 @@ public class DivisionEnablersUI
             return;
         }
 
+        if (type == DivisionEnablers.EnablerType.SupplyDrop)
+        {
+            ShowSupplyDropTargeting(player);
+            return;
+        }
+
         bool success = DivisionEnablers.RequestEnabler(player, type);
 
         if (success)
@@ -406,6 +412,20 @@ public class DivisionEnablersUI
         // Close panel and start targeting with the enabler's duration
         ClosePanel();
         DivisionEnablersMod.AirReconSystem.ActivateTargeting(player, enabler.activeDuration, radius: 2);
+    }
+
+    static void ShowSupplyDropTargeting(Player player)
+    {
+        var pdata = DivisionEnablers.GetPlayerData(player);
+        var enabler = pdata?.GetEnabler(DivisionEnablers.EnablerType.SupplyDrop);
+        if (enabler == null || !enabler.CanRequest(player))
+        {
+            UIManager.ShowMessage("Cannot request Supply Drop now");
+            return;
+        }
+
+        ClosePanel();
+        DivisionEnablersMod.SupplyDropSystem.ActivateTargeting(player, radius: 1, supplyBonus: 75f);
     }
 
     static Canvas GetCanvas()

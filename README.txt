@@ -18,7 +18,7 @@ Features
   - Precision Strike: Focused damage on a single hex
   - Suppression Barrage: Reduce enemy combat effectiveness
 - Air Reconnaissance - Click-to-target fog-of-war reveal with turn-based duration
-- Supply Drops - Emergency supply delivery to units (coming soon)
+- Supply Drops - Targeted resupply for friendly units in a radius-1 zone
 - Reinforcements - Request additional units from Division reserve
 - Cooldown System - Each enabler has a turn-based cooldown after use
 - Cost Management - Enablers cost money, requiring strategic resource management
@@ -53,6 +53,9 @@ Usage
 - Air Reconnaissance prompts you to select a hex:
   - Choose a target hex to reveal a radius-2 area for the enabler's duration
   - Existing recon zones reapply visibility each turn until they expire
+- Supply Drops prompt you to select a hex:
+  - Friendly ground or air units within one hex gain up to +75 supply (capped at 100)
+  - Useful for rescuing units cut off from supply lines
 - Artillery Support opens a configuration panel:
   - Select your preferred strike mode
   - Click "Confirm & Target"
@@ -101,13 +104,13 @@ Resources
 Known Issues
 ----------------
 - After a game update, if the H key stops working, rebuild the mod DLL
-- Some enabler effects (Supply Drops) are placeholders
+- Supply Drop effect uses radius 1 and may need balance tuning
 - Artillery damage calculations may need balancing
 
 Future Features
 ----------------
 - Additional Air Recon polish (visual FX, variable radius selection)
-- Supply Drop implementation with unit supply restoration
+- Supply Drop polish (balance tweaks, visual FX, configurable radius)
 - Additional enabler types (Medical Evacuation, Signals Intelligence)
 - Configurable costs and cooldowns via mod settings
 - Visual effects for artillery strikes

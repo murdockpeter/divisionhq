@@ -376,8 +376,8 @@ namespace DivisionEnablersMod
                     break;
 
                 case EnablerType.SupplyDrop:
-                    // Restore supply to units
-                    Debug.Log($"[DivisionEnablers] Supply drop effect applied for {player.Country}");
+                    // Supply drop targeting handled by SupplyDropSystem
+                    Debug.Log($"[DivisionEnablers] Supply drop requested for {player.Country}");
                     break;
 
                 case EnablerType.Reinforcements:
