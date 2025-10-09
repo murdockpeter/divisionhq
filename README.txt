@@ -1,4 +1,4 @@
-Division Enablers - Hex of Steel Mod
+﻿Division Enablers - Hex of Steel Mod
 ====================================================================
 
 Request special assets from Division HQ during gameplay!
@@ -12,18 +12,18 @@ to keep gameplay balanced.
 
 Features
 ----------------
-• Division HQ Panel - Press 'H' to open the request panel during your turn
-• Artillery Support - Request heavy artillery strikes with multiple modes:
+- Division HQ Panel - Press 'H' to open the request panel during your turn
+- Artillery Support - Request heavy artillery strikes with multiple modes:
   - Area Damage: Wide blast radius for concentrated enemy positions
   - Precision Strike: Focused damage on a single hex
   - Suppression Barrage: Reduce enemy combat effectiveness
-• Air Reconnaissance - Reveal enemy positions (coming soon)
-• Supply Drops - Emergency supply delivery to units (coming soon)
-• Reinforcements - Request additional units from Division reserve
-• Cooldown System - Each enabler has a turn-based cooldown after use
-• Cost Management - Enablers cost money, requiring strategic resource management
-• Limited Uses - Some enablers have a maximum number of uses per game
-• Persistent Data - Your enabler status is saved with your game
+- Air Reconnaissance - Click-to-target fog-of-war reveal with turn-based duration
+- Supply Drops - Emergency supply delivery to units (coming soon)
+- Reinforcements - Request additional units from Division reserve
+- Cooldown System - Each enabler has a turn-based cooldown after use
+- Cost Management - Enablers cost money, requiring strategic resource management
+- Limited Uses - Some enablers have a maximum number of uses per game
+- Persistent Data - Your enabler status is saved with your game
 
 What is Harmony?
 ----------------
@@ -36,7 +36,7 @@ Installation
 ----------------
 1. Download or clone this repository
 2. Build the project:
-   - In VS Code: Terminal → Run Task → dotnet: build
+   - In VS Code: Terminal > Run Task > dotnet: build
    - Or from the terminal: dotnet build
 3. The compiled DLL will be in: output/net48/DivisionEnablers.dll
 4. In Hex of Steel, create a mod folder:
@@ -48,15 +48,18 @@ Installation
 
 Usage
 ----------------
-• Press 'H' during your turn to open the Division HQ panel
-• Click on any available enabler to request it (costs money)
-• Artillery Support opens a configuration panel:
+- Press 'H' during your turn to open the Division HQ panel
+- Click on any available enabler to request it (costs money)
+- Air Reconnaissance prompts you to select a hex:
+  - Choose a target hex to reveal a radius-2 area for the enabler's duration
+  - Existing recon zones reapply visibility each turn until they expire
+- Artillery Support opens a configuration panel:
   - Select your preferred strike mode
   - Click "Confirm & Target"
   - Click on a hex on the map to strike that location
-• Enablers enter cooldown after use
-• Some enablers have limited uses per game
-• Your enabler status is saved with your game
+- Enablers enter cooldown after use
+- Some enablers have limited uses per game
+- Your enabler status is saved with your game
 
 Development
 ----------------
@@ -77,7 +80,7 @@ Key Files:
 
 Debugging
 ----------------
-If your mod doesn’t work or crashes, check the Player.log file. It records all errors and helpful debug messages.
+If your mod doesn't work or crashes, check the Player.log file. It records all errors and helpful debug messages.
 
 Player.log locations:
 - Windows: %USERPROFILE%\AppData\LocalLow\War Frogs Studio\Hex of Steel\Player.log
@@ -98,12 +101,12 @@ Resources
 Known Issues
 ----------------
 - After a game update, if the H key stops working, rebuild the mod DLL
-- Some enabler effects (Air Recon, Supply Drops) are placeholders
+- Some enabler effects (Supply Drops) are placeholders
 - Artillery damage calculations may need balancing
 
 Future Features
 ----------------
-- Fully implemented Air Reconnaissance with fog of war reveal
+- Additional Air Recon polish (visual FX, variable radius selection)
 - Supply Drop implementation with unit supply restoration
 - Additional enabler types (Medical Evacuation, Signals Intelligence)
 - Configurable costs and cooldowns via mod settings
@@ -138,3 +141,4 @@ Always check for updates after game patches, as the game API may change.
 For support and discussion:
 - Hex of Steel Community Discord: https://discord.gg/Tn63mrwJyH
 - Harmony Documentation: https://harmony.pardeike.net/
+
